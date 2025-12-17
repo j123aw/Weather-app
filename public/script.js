@@ -45,6 +45,15 @@ async function getWeather() {
   }
 }
 
+function createTermCard(term, definition) {
+  return `
+    <div class="term-card">
+      <h3 class="term-name">${term.charAt(0).toUpperCase() + term.slice(1)}</h3>
+      <p class="term-definition">${definition}</p>
+    </div>
+  `;
+}
+
 function searchTerm() {
   const searchInput = document.getElementById('termSearch').value.trim().toLowerCase();
   const resultDiv = document.getElementById('dictionaryResult');
@@ -61,22 +70,12 @@ function searchTerm() {
   for (const [term, definition] of Object.entries(weatherDictionary)) {
     if (term.toLowerCase() === searchInput) {
       // Exact match
-      resultHTML = `
-        <div class="term-card">
-          <h3 class="term-name">${term.charAt(0).toUpperCase() + term.slice(1)}</h3>
-          <p class="term-definition">${definition}</p>
-        </div>
-      `;
+      resultHTML = createTermCard(term, definition);
       found = true;
       break;
     } else if (term.toLowerCase().includes(searchInput)) {
       // Partial match - add to results
-      resultHTML += `
-        <div class="term-card">
-          <h3 class="term-name">${term.charAt(0).toUpperCase() + term.slice(1)}</h3>
-          <p class="term-definition">${definition}</p>
-        </div>
-      `;
+      resultHTML += createTermCard(term, definition);
       found = true;
     }
   }
