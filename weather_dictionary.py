@@ -5,6 +5,8 @@ This module demonstrates various dictionary operations using weather-related dat
 Dictionaries are key-value pairs that allow efficient data storage and retrieval.
 """
 
+import copy
+
 
 def demonstrate_dictionary_basics():
     """Demonstrate basic dictionary creation and operations."""
@@ -311,7 +313,6 @@ def demonstrate_copying_dictionaries():
     print(f"Shallow copy: {shallow}")
     
     # Deep copy (requires import copy)
-    import copy
     original2 = {
         "city": "Athens",
         "temperature": 28,
