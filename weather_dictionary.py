@@ -6,6 +6,7 @@ Dictionaries are key-value pairs that allow efficient data storage and retrieval
 """
 
 import copy
+from datetime import datetime
 
 
 def demonstrate_dictionary_basics():
@@ -267,7 +268,6 @@ def demonstrate_practical_example():
     
     # Adding weather data for different stations
     def add_weather_reading(station_id, city, temp, condition):
-        from datetime import datetime
         weather_stations[station_id] = {
             "city": city,
             "temperature": temp,
@@ -287,7 +287,7 @@ def demonstrate_practical_example():
             print(f"  {key}: {value}")
     
     # Calculate average temperature
-    if len(weather_stations) > 0:
+    if weather_stations:
         avg_temp = sum(data["temperature"] for data in weather_stations.values()) / len(weather_stations)
         print(f"\nAverage temperature across all stations: {avg_temp:.1f}°C")
     else:
