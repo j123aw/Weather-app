@@ -267,11 +267,12 @@ def demonstrate_practical_example():
     
     # Adding weather data for different stations
     def add_weather_reading(station_id, city, temp, condition):
+        from datetime import datetime
         weather_stations[station_id] = {
             "city": city,
             "temperature": temp,
             "condition": condition,
-            "timestamp": "2025-12-17 10:30:00"
+            "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S")  # Dynamic timestamp
         }
     
     # Add data
@@ -286,8 +287,11 @@ def demonstrate_practical_example():
             print(f"  {key}: {value}")
     
     # Calculate average temperature
-    avg_temp = sum(data["temperature"] for data in weather_stations.values()) / len(weather_stations)
-    print(f"\nAverage temperature across all stations: {avg_temp:.1f}°C")
+    if len(weather_stations) > 0:
+        avg_temp = sum(data["temperature"] for data in weather_stations.values()) / len(weather_stations)
+        print(f"\nAverage temperature across all stations: {avg_temp:.1f}°C")
+    else:
+        print("\nNo weather station data available to calculate average.")
     print()
 
 
